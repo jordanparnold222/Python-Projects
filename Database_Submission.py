@@ -14,7 +14,7 @@ with conn:
 
     ##TABLE POPULATION
     for i in list_of_files:
-        cur.execute('INSERT INTO tbl_files(col_fileName) VALUES(?)', (i,))
+        cur.execute('INSERT INTO tbl_files(col_fileName) VALUES(?)', i)
     
     #CREATING A VARIABLE THAT RECIEVES THE RETURNED DATA FROM THE 'SELECT' STATEMENT, THEN PRINTING IT TO THE SCREEN
     cur.execute('SELECT * FROM tbl_files WHERE col_FileName LIKE "%.txt" ')
