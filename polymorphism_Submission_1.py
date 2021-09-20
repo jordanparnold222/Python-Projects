@@ -5,6 +5,7 @@ class Member:
     email = "jordan@gmail.com"
     password = "9771900"
 
+    ##LOGIN FUNCTION FOR CUSTOMERS
     def login(self):
         print('\nWelcome, valued customer!')
 
@@ -23,6 +24,7 @@ class Manager(Member):
     manager_id = 146343
     store_number = 37
 
+    ##LOGIN FUNCTION FOR MANAGERS
     def login(self):
         print('\nWelcome, store manager!')
 
@@ -39,6 +41,7 @@ class Employee(Member):
     employee_id = 503948
     store_number = 37
 
+    ##LOGIN FUNCTION FOR EMPLOYEES
     def login(self):
         print('\nWelcome, store employee!')
 
@@ -51,7 +54,7 @@ class Employee(Member):
             print('\nInvalid credentials. Please try again.')
             Employee.login(self)
 
-
+##tHIS FUNCTION WILL BE CALLED ON, SO THAT IT CAN DIRECT THE USER TO THE NECESSARY LOGIN SCREEN
 def determineStatus():
     print('Welcome to the grocery store website!')
 
