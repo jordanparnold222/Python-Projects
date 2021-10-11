@@ -13,20 +13,28 @@ from transferGUI import *
 source = 'C:/Users/pjord/AppData/Local/Programs/Python/Python39/Tech Academy/File_transfer_assignments/File_transfer_assignment_pt2/created_modified/'
 destination = 'C:/Users/pjord/AppData/Local/Programs/Python/Python39/Tech Academy/File_transfer_assignments/File_transfer_assignment_pt2/transfer_recieved/'
 files = os.listdir(source)
-reassigned = ''
+reassigned_dest = ''
+reassigned_source = ''
 
 #this is called on when the user clicks the 'browse' button. It stores that path for the time being
-def recieve_newPath(path):
-    global reassigned
-    reassigned = path
+def recieve_newPath_dest(path):
+    global reassigned_dest
+    reassigned_dest = path
+
+def recieve_newPath_source(path):
+    global reassigned_source
+    reassigned_source = path
 
 #This is called on when someone clicks the "assign destination" button.
 # #It loads up the new destination path for when they choose to execute
-def reassign_destination():
+def reassign_all():
     global destination
-    global reassigned
-    destination = reassigned + '/'
-    print(destination)
+    global source
+    global reassigned_dest
+    global reassigned_source
+
+    destination = reassigned_dest + '/'
+    source = reassigned_source + '/'
 
 
 #this function is called when the person clicks the "initiate transfer" button

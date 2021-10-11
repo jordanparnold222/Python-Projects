@@ -41,17 +41,25 @@ class ParentWindow(Frame):
 
 ##### GUI #####
 def load_the_gui(self):
-    self.button_browse1 = tk.Button(self.master, width=10, height=1, text='Browse...', command=lambda:callback(self))
-    self.button_browse1.grid(row=0, column=0, padx=(27,0), pady=(20,0), sticky = N + W)
+    self.label_destination = tk.Label(self.master, text='Choose destination folder: ')
+    self.label_destination.grid(row=0, column=0, padx=(27,0), pady=(20,0), stick = N + W)
+    self.button_browse1 = tk.Button(self.master, width=10, height=1, text='Browse...', command=lambda:callback_dest(self))
+    self.button_browse1.grid(row=1, column=0, padx=(27,0), pady=(20,0), sticky = N + W)
+    self.text_pathDest = tk.Entry(self.master, width=50, text='')
+    self.text_pathDest.grid(row=1, column=1, rowspan=1, columnspan=2, padx=(27, 0), pady=(20,0), sticky=N + E + W)
 
-    self.text_path = tk.Entry(self.master, width=50, text='')
-    self.text_path.grid(row=0, column=1, rowspan=1, columnspan=2, padx=(27, 0), pady=(20,0), sticky=N + E + W)
+    self.label_source = tk.Label(self.master, text='Choose source folder: ')
+    self.label_source.grid(row=2, column=0, padx=(27,0), pady=(20,0), stick = N + W)
+    self.button_browse2 = tk.Button(self.master, width=10, height=1, text='Browse...', command=lambda:callback_source(self))
+    self.button_browse2.grid(row=3, column=0, padx=(27,0), pady=(20,0), sticky = N + W)
+    self.text_pathSource = tk.Entry(self.master, width=50, text='')
+    self.text_pathSource.grid(row=3, column=1, rowspan=1, columnspan=2, padx=(27, 0), pady=(20,0), sticky=N + E + W)
 
-    self.button_reassign_destination = tk.Button(self.master, width=20, height=1, text='Assign Destination', command=lambda:FT_PT2.reassign_destination())
-    self.button_reassign_destination.grid(row=1, column=0, padx=(27,0), pady=(20,0), sticky= N + W)
+    self.button_reassign_all = tk.Button(self.master, width=20, height=1, text='Assign Directories', command=lambda:FT_PT2.reassign_all())
+    self.button_reassign_all.grid(row=4, column=0, padx=(27,0), pady=(20,0), sticky= N + W)
 
     self.button_init = tk.Button(self.master, width=12, height=2, text='Initiate Transfer', command=lambda:FT_PT2.transfer_initiate())
-    self.button_init.grid(row=2, column=0, padx=(27,0),pady=(20,0), sticky=S + W)
+    self.button_init.grid(row=5, column=0, padx=(27,0),pady=(20,0), sticky=S + W)
     return self
 
 
@@ -79,12 +87,17 @@ def ask_whether_quit(self):
         os._exit(0)
 
 #this updates the entry box and sends its contents to the other module via the "recieve_newPath" function
-def callback(self):
+def callback_dest(self):
     text = fd.askdirectory()
-    self.text_path.delete(0, "end")
-    self.text_path.insert(0, text)
-    FT_PT2.recieve_newPath(text)
+    self.text_pathDest.delete(0, "end")
+    self.text_pathDest.insert(0, text)
+    FT_PT2.recieve_newPath_dest(text)
  
+def callback_source(self):
+    text = fd.askdirectory()
+    self.text_pathSource.delete(0, "end")
+    self.text_pathSource.insert(0, text)
+    FT_PT2.recieve_newPath_source(text)
 
 
 
