@@ -1,4 +1,4 @@
-import os
+import os, sys
 import os.path, time
 import shutil
 import datetime as dt
@@ -6,12 +6,13 @@ from tkinter import *
 import tkinter as tk
 from tkinter import messagebox
 
+os.chdir(os.getcwd())
 #user-created imports
 import transferGUI
 from transferGUI import *
 #global variables for use later
-source = 'C:/Users/pjord/AppData/Local/Programs/Python/Python39/Tech Academy/File_transfer_assignments/File_transfer_assignment_pt2/created_modified/'
-destination = 'C:/Users/pjord/AppData/Local/Programs/Python/Python39/Tech Academy/File_transfer_assignments/File_transfer_assignment_pt2/transfer_recieved/'
+source = "/created_modified/"
+destination = "/transfer_recieved/"
 files = os.listdir(source)
 reassigned_dest = ''
 reassigned_source = ''
