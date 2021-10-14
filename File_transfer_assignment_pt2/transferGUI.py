@@ -43,22 +43,19 @@ class ParentWindow(Frame):
 def load_the_gui(self):
     self.label_destination = tk.Label(self.master, text='Choose destination folder: ')
     self.label_destination.grid(row=0, column=0, padx=(27,0), pady=(20,0), stick = N + W)
-    self.button_browse1 = tk.Button(self.master, width=10, height=1, text='Browse...', command=lambda:callback_dest(self))
+    self.button_browse1 = tk.Button(self.master, width=10, height=1, text='Browse...', command=lambda:FT_PT2.choose_dest(self))
     self.button_browse1.grid(row=1, column=0, padx=(27,0), pady=(20,0), sticky = N + W)
     self.text_pathDest = tk.Entry(self.master, width=50, text='')
     self.text_pathDest.grid(row=1, column=1, rowspan=1, columnspan=2, padx=(27, 0), pady=(20,0), sticky=N + E + W)
 
     self.label_source = tk.Label(self.master, text='Choose source folder: ')
     self.label_source.grid(row=2, column=0, padx=(27,0), pady=(20,0), stick = N + W)
-    self.button_browse2 = tk.Button(self.master, width=10, height=1, text='Browse...', command=lambda:callback_source(self))
+    self.button_browse2 = tk.Button(self.master, width=10, height=1, text='Browse...', command=lambda:FT_PT2.choose_source(self))
     self.button_browse2.grid(row=3, column=0, padx=(27,0), pady=(20,0), sticky = N + W)
     self.text_pathSource = tk.Entry(self.master, width=50, text='')
     self.text_pathSource.grid(row=3, column=1, rowspan=1, columnspan=2, padx=(27, 0), pady=(20,0), sticky=N + E + W)
 
-    self.button_reassign_all = tk.Button(self.master, width=20, height=1, text='Assign Directories', command=lambda:FT_PT2.reassign_all())
-    self.button_reassign_all.grid(row=4, column=0, padx=(27,0), pady=(20,0), sticky= N + W)
-
-    self.button_init = tk.Button(self.master, width=12, height=2, text='Initiate Transfer', command=lambda:FT_PT2.transfer_initiate())
+    self.button_init = tk.Button(self.master, width=12, height=2, text='Initiate Transfer', command=lambda:FT_PT2.transfer_initiate(self))
     self.button_init.grid(row=5, column=0, padx=(27,0),pady=(20,0), sticky=S + W)
     return self
 

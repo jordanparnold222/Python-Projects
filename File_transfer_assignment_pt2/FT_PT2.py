@@ -5,51 +5,36 @@ import datetime as dt
 from tkinter import *
 import tkinter as tk
 from tkinter import messagebox
-
-os.chdir(os.getcwd())
+from tkinter import filedialog
 #user-created imports
 import transferGUI
 from transferGUI import *
 #global variables for use later
-source = "/created_modified/"
-destination = "/transfer_recieved/"
-files = os.listdir(source)
-reassigned_dest = ''
-reassigned_source = ''
-
-#this is called on when the user clicks the 'browse' button. It stores that path for the time being
-def recieve_newPath_dest(path):
-    global reassigned_dest
-    reassigned_dest = path
-
-def recieve_newPath_source(path):
-    global reassigned_source
-    reassigned_source = path
-
-#This is called on when someone clicks the "assign destination" button.
-# #It loads up the new destination path for when they choose to execute
-def reassign_all():
-    global destination
-    global source
-    global reassigned_dest
-    global reassigned_source
-
-    destination = reassigned_dest + '/'
-    source = reassigned_source + '/'
 
 
+
+
+
+def choose_source(self):
+    src = filedialog.askdirectory()
+    self.text_pathSource.insert(0, src)
+
+def choose_dest(self):
+    src = filedialog.askdirectory()
+    self.text_pathDest.insert(0, src)
 #this function is called when the person clicks the "initiate transfer" button
-def transfer_initiate():
-    for i in files:
-        number_of_files = 0
-        modified_time = dt.datetime.fromtimestamp(os.path.getmtime(source + i))
-        created_time = dt.datetime.fromtimestamp(os.path.getctime(source + i))
-        today = dt.datetime.now().date()
+def transfer_initiate(self):
+    source = self.text_pathSource.get()
+    destination = self.text_pathDest.get()
+    file = os.listdir(source)
+    for i in file:
+        modified_time = dt.datetime.fromtimestamp(os.path.getmtime(source + '/' + i))
+        created_time = dt.datetime.fromtimestamp(os.path.getctime(source + '/' + i))
+        today = dt.datetime.now()
+        twenty_four = today - dt.timedelta(hours=24)
 
-        number_of_files = number_of_files + 1
-
-        if (modified_time.date() == today) or (created_time.date() == today):
-            shutil.move(source + i, destination)
+        if (modified_time > twenty_four):
+            shutil.move(source + '/' + i, destination)
 
         else:
             pass
